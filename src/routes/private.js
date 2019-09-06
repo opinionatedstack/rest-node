@@ -4,7 +4,9 @@ const router = express.Router();
 router.get('/', function (req, res, next) {
     try {
         const result = {
-            message: 'Sucessfully GETTED private: ' + process.env.SAMPLE_TEXT
+            message: 'Sucessfully GETTED private: ',
+            dotEnvTestValue: process.env.SAMPLE_TEXT,
+            dateTime: (new Date().toLocaleTimeString())
         };
         res.json(result);
     } catch (e) {
@@ -15,7 +17,9 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     try {
         const result = {
-            message: 'Successfully POSTED private: ' + process.env.SAMPLE_TEXT,
+            message: 'Successfully POSTED private: ',
+            dotEnvTestValue: process.env.SAMPLE_TEXT,
+            dateTime: (new Date().toLocaleTimeString()),
             echoedData: req.body
         };
         res.json(result);
