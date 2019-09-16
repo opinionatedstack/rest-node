@@ -27,17 +27,6 @@ app.use(logger('dev'));
 app.use(cors());
 app.options('*', cors());
 
-/*
-//create a cors middleware
-app.use(function(req, res, next) {
-//set headers to allow cross origin request.
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-*/
-
 var jwt = require('express-jwt');
 var jwks = require('jwks-rsa');
 
@@ -59,9 +48,11 @@ var jwtCheck = jwt({
 
 const publicRoutes = require ('./routes/public');
 const privateRoutes = require ('./routes/private');
+const adminRoutes = require ('./routes/admin');
 
 app.use('/rest/public', publicRoutes);
 app.use('/rest/private', jwtCheck, privateRoutes);
+app.use('/rest/admin', jwtCheck, adminRoutes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -82,21 +73,11 @@ app.use(function(err, req, res, next) {
 });
 
 const server = app.listen(parseInt(process.env.REST_SERVER_PORT), () => {
-    console.log("Server running on port 3000");
+    console.log("Server running on port", process.env.REST_SERVER_PORT);
 });
-
 
 server.on('error', onError);
 server.on('listening', onListening);
-
-
-//var server = require('http').Server(app);
-//var io = require('socket.io')(server);
-//var wcSocket = require('./objects/wc-socket').socketServer(io);
-
-
-//module.exports = {app: app, server: server};
-
 
 function onError(error) {
     if (error.syscall !== 'listen') {
