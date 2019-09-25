@@ -4,7 +4,7 @@ const router = express.Router();
 router.get('/', function (req, res, next) {
     try {
         const result = {
-            message: 'Sucessfully GETTED public: ',
+            message: 'Sucessful public GET',
             dotEnvTestValue: process.env.SAMPLE_TEXT,
             dateTime: (new Date().toLocaleTimeString())
         };
@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     try {
         const result = {
-            message: 'Successfully POSTED public: ',
+            message: 'Successful public POST',
             dotEnvTestValue: process.env.SAMPLE_TEXT,
             dateTime: (new Date().toLocaleTimeString()),
             echoedData: req.body
@@ -31,7 +31,7 @@ router.post('/', function (req, res, next) {
 router.get('/generatesError', function (req, res, next) {
     try {
         const result = {
-            message: 'Sucessfully GETTED public: ',
+            message: 'This public GET should fail',
             dotEnvTestValue: process.env.SAMPLE_TEXT,
             dateTime: (new Date().toLocaleTimeString())
         };
