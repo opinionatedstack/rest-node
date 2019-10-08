@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const auth0 = require ('./../objects/auth0');
+const auth0 = require ('../objects/auth0');
 
 router.post('/getUsers', function (req, res, next) {
     auth0.getUsers(req)
