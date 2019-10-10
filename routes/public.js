@@ -35,7 +35,7 @@ router.get('/generatesError', function (req, res, next) {
             dotEnvTestValue: process.env.SAMPLE_TEXT,
             dateTime: (new Date().toLocaleTimeString())
         };
-        inexistantObject.inexistantFunction();
+        nonExistantObject.nonExistantFunction();
         res.json(result);
     } catch (e) {
         res.status(500).json({ statusCode: 500, message: e.message });
