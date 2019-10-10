@@ -21,7 +21,9 @@ app.use(bodyParser.urlencoded({ extended: false })); // I saw this as true in ht
 app.use(cookieParser());
 app.use(compression());
 
-app.use(logger('dev'));
+if (process.env.MOCHA_TESTS !== 'true') {
+    app.use(logger('dev'));
+}
 
 //fuck, was working, removed after getting "Access-Control-Allow-Origin header contains multiple values '*, *', but only one is allowed"
 app.use(cors());
@@ -114,3 +116,6 @@ function onListening() {
         : 'port ' + addr.port;
     debug('Listening on ' + bind);
 }
+
+
+module.exports = app;
