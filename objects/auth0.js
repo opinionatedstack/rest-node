@@ -6,8 +6,6 @@ var tokenTMAuth0MgmtAPIDateTime;
 var tokenAuth0AuthExtension;
 var tokenAuth0AuthExtensionDateTime;
 
-var auth0AuthExtentionUrlBase = 'https://transactmonitor.us8.webtask.io/adf6e2f2b84784b57522e3b19dfc9201/api/';
-
 module.exports = {
     getUsers: (req) => {
         return new Promise (function (resolve, reject) {
