@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const auth0 = require ('../objects/auth0');
 
-router.post('/getUsers', function (req, res, next) {
+const jwtAuthz = require('express-jwt-authz');
+
+router.post('/getUsers', jwtAuthz([ 'users:read' ]), (req, res, next) => {
     auth0.getUsers(req)
         .then (function (result) {
             res.json(result);
@@ -11,7 +13,7 @@ router.post('/getUsers', function (req, res, next) {
         });
 });
 
-router.post('/getUser', function (req, res, next) {
+router.post('/getUser',  jwtAuthz([ 'users:read' ]), (req, res, next) => {
     auth0.getUser(req)
         .then (function (result) {
             res.json(result);
@@ -20,7 +22,7 @@ router.post('/getUser', function (req, res, next) {
         });
 });
 
-router.post('/updateUser', function (req, res, next) {
+router.post('/updateUser',  jwtAuthz([ 'users:read', 'users:write' ]), (req, res, next) => {
     auth0.updateUser(req)
         .then (function (result) {
             res.json(result);
@@ -29,7 +31,7 @@ router.post('/updateUser', function (req, res, next) {
         });
 });
 
-router.post('/getRoles', function (req, res, next) {
+router.post('/getRoles',  jwtAuthz([ 'roles:read' ]), (req, res, next) => {
     auth0.getRoles(req)
         .then (function (result) {
             res.json(result);
