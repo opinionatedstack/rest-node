@@ -1,5 +1,6 @@
 
 const request = require('request');
+const testConstants = require ('./test.constants');
 
 var tokenTMAuth0MgmtAPI;
 var tokenTMAuth0MgmtAPIDateTime;
@@ -20,10 +21,13 @@ module.exports = {
                 url: process.env.AUTH0_DOMAIN + '/oauth/token',
                 headers: {'content-type': 'application/json'},
                 body: {
-                    client_id: 'wWfj3qRYjgQ9KQU5e3NQQ1E05GzWhO3J',
-                    client_secret: 'FqdNfqRYDAu_2Igs3e7nyvfiU2Y9BV3BXf1nXm3rdgQ5_XRApiuwRpDh34VuC-TA',
-                    audience: 'https://test.opinionatedstack.com',
-                    grant_type: "client_credentials"
+                    client_id: testConstants.client_id,
+                    client_secret: testConstants.client_secret,
+                    audience: testConstants.audience,
+                    grant_type: 'password',
+                    username: testConstants.username,
+                    password: testConstants.password,
+                    scope: testConstants.requestedScopes
                 },
                 json: true
             };
