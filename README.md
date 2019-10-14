@@ -25,3 +25,7 @@ docker push opinionatedstack/rest-node:latest
 docker build -t opinionatedstack/rest-node:latest -f Dockerfile.prod . && docker push opinionatedstack/rest-node:latest && say done
 
  docker run --name rest -it --rm -p 3000:3000 opinionatedstack/rest-node
+
+
+# Testing
+The web login application should have grant_type=password
