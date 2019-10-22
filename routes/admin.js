@@ -40,4 +40,13 @@ router.post('/getRoles',  jwtAuthz([ 'roles:read' ]), (req, res, next) => {
         });
 });
 
+router.post('/setUsersStripeCustomerId',  jwtAuthz([ 'roles:read' ]), (req, res, next) => {
+    auth0.setUsersStripeCustomerId(req)
+        .then (function (result) {
+            res.json(result);
+        }, function (error) {
+            res.status(error.statusCode).json(error);
+        });
+});
+
 module.exports = router;
